@@ -1,11 +1,11 @@
+// Styles
+import { HeaderComponent, Title } from "./Header.styles";
+
 function Header() {
   return (
-    <header className="header">
-      <div className="logo">
-        <img src="/path/to/logo.png" alt="App Logo" />
-      </div>
-      <h1 className="title">Minesweeper</h1>
-    </header>
+    <HeaderComponent>
+      <Title>💣 Minesweeper</Title>
+    </HeaderComponent>
   );
 }
 

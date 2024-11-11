@@ -8,6 +8,9 @@ import ErrorBoundary from "./components/ErrorBoundary.tsx";
 // Context
 import { MineFieldProvider } from "./context/MineFieldContext.tsx";
 
+// Styles
+import "./index.css";
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary>

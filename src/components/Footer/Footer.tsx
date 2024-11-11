@@ -1,17 +1,18 @@
+// Styles
+import { Author, FooterComponent, GitHubLogo, Link } from "./Footer.styles";
+
 function Footer() {
   return (
-    <footer className="footer">
-      <p>Author: Josef Krajkar</p>
-      <p>
-        <a
-          href="https://github.com/josefkrajkar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-      </p>
-    </footer>
+    <FooterComponent>
+      <Author>Author: Josef Krajkář</Author>
+      <Link
+        href="https://github.com/josefkrajkar"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <GitHubLogo src="/github.png" alt="GitHub" />
+      </Link>
+    </FooterComponent>
   );
 }
 

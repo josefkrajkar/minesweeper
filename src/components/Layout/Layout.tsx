@@ -2,13 +2,16 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
+// Styles
+import { LayoutWrapper, Main } from "./Layout.styles";
+
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <LayoutWrapper>
       <Header />
-      <main>{children}</main>
+      <Main>{children}</Main>
       <Footer />
-    </div>
+    </LayoutWrapper>
   );
 }
 

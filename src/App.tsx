@@ -10,8 +10,8 @@ function App() {
 
   return (
     <Layout>
-      {gameState === "lost" && <h1>Prohrál jsi!</h1>}
-      {gameState === "won" && <h1>Gratulujeme, vyhrál jsi!</h1>}
+      {gameState === "lost" && <h1>BOOM, you lost!</h1>}
+      {gameState === "won" && <h1>Congratulations, you won!</h1>}
       <Field />
     </Layout>
   );

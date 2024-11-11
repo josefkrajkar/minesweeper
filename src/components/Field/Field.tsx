@@ -21,6 +21,9 @@ function Field() {
       rowHeight={CELL_SIZE}
       width={CELL_SIZE * COLUMN_COUNT}
       itemData={minefield}
+      style={{
+        margin: "auto",
+      }}
     >
       {Cell}
     </Grid>
