@@ -46,3 +46,108 @@ export function placeMines(grid: Grid, mineCount: number): Grid {
 
   return grid;
 }
+
+export function calculateNeighborMineCounts(grid: Grid): Grid {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  const directions = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    /* cell */ [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+  ];
+
+  for (let x = 0; x < rows; x++) {
+    for (let y = 0; y < cols; y++) {
+      if (grid[x][y].isMine) continue;
+
+      let count = 0;
+
+      for (const [dx, dy] of directions) {
+        const nx = x + dx;
+        const ny = y + dy;
+
+        if (
+          nx >= 0 &&
+          nx < rows &&
+          ny >= 0 &&
+          ny < cols &&
+          grid[nx][ny].isMine
+        ) {
+          count++;
+        }
+      }
+
+      grid[x][y].neighborMineCount = count;
+    }
+  }
+
+  return grid;
+}
+
+export function revealNeighbors(grid: Grid, x: number, y: number): Grid {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  const directions = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    /* cell */ [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+  ];
+
+  const queue = [[x, y]];
+
+  while (queue.length > 0) {
+    const [x, y] = queue.shift()!;
+
+    for (const [dx, dy] of directions) {
+      const nx = x + dx;
+      const ny = y + dy;
+
+      if (
+        nx >= 0 &&
+        nx < rows &&
+        ny >= 0 &&
+        ny < cols &&
+        !grid[nx][ny].isRevealed &&
+        !grid[nx][ny].isMine
+      ) {
+        grid[nx][ny].isRevealed = true;
+
+        if (grid[nx][ny].neighborMineCount === 0) {
+          queue.push([nx, ny]);
+        }
+      }
+    }
+  }
+
+  return grid;
+}
+
+export function revealAllMines(grid: Grid): Grid {
+  return grid.map((row) =>
+    row.map((cell) => ({
+      ...cell,
+      isRevealed: cell.isMine || cell.isRevealed || cell.isFlagged,
+    })),
+  );
+}
+
+export function checkWinConditions(grid: Grid): boolean {
+  return grid.every((row) =>
+    row.every(
+      (cell) =>
+        (cell.isMine && cell.isFlagged) || (!cell.isMine && cell.isRevealed),
+    ),
+  );
+}

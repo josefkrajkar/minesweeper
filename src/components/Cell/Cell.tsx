@@ -1,39 +1,42 @@
 import type { Grid } from "../../utils/types";
+import { useMineField } from "../../hooks/useMineField";
 
-interface CellProps {
+type CellProps = {
   columnIndex: number;
   rowIndex: number;
   style: React.CSSProperties;
   data: Grid;
-}
+};
 
-function Cell({ columnIndex, rowIndex, style, data }: CellProps) {
+function Cell({ rowIndex, columnIndex, data, style }: CellProps) {
   const cellData = data[rowIndex][columnIndex];
+  const { isRevealed, isMine, neighborMineCount, isFlagged } = cellData;
+  const { onCellReveal, onCellFlag, gameState } = useMineField();
 
   const handleClick = () => {
-    // Zpracuj odhalení buňky
-    console.log(`Klikl jsi na buňku [${rowIndex}, ${columnIndex}]`);
+    if (gameState !== "running") {
+      return;
+    }
+    onCellReveal(rowIndex, columnIndex);
+  };
+
+  const handleFlag = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (gameState !== "running") {
+      return;
+    }
+    onCellFlag(rowIndex, columnIndex);
   };
 
   return (
     <button
+      style={{ ...style, backgroundColor: isRevealed ? "gray" : "lightgrey" }}
       onClick={handleClick}
-      style={{
-        ...style,
-        border: "1px solid #ccc",
-        boxSizing: "border-box",
-        backgroundColor: cellData.isRevealed ? "#e0e0e0" : "#bdbdbd",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-      }}
+      onContextMenu={handleFlag}
     >
-      {cellData.isRevealed && cellData.isMine && "💣"}
-      {cellData.isRevealed &&
-        !cellData.isMine &&
-        cellData.neighborMineCount > 0 &&
-        cellData.neighborMineCount}
+      {isFlagged && "🚩"}
+      {isRevealed && isMine && "💣"}
+      {isRevealed && !isMine && neighborMineCount > 0 && neighborMineCount}
     </button>
   );
 }
