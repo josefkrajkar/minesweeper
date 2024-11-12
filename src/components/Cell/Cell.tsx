@@ -1,6 +1,9 @@
 import type { Grid } from "../../utils/types";
 import { useMineField } from "../../hooks/useMineField";
 
+// Styles
+import { Button } from "./Cell.styles";
+
 type CellProps = {
   columnIndex: number;
   rowIndex: number;
@@ -29,15 +32,19 @@ function Cell({ rowIndex, columnIndex, data, style }: CellProps) {
   };
 
   return (
-    <button
-      style={{ ...style, backgroundColor: isRevealed ? "gray" : "lightgrey" }}
+    <Button
+      style={style}
       onClick={handleClick}
       onContextMenu={handleFlag}
+      isRevealed={isRevealed}
+      isMine={isMine}
+      isFlagged={isFlagged}
+      neighborMineCount={neighborMineCount}
     >
       {isFlagged && "🚩"}
       {isRevealed && isMine && "💣"}
       {isRevealed && !isMine && neighborMineCount > 0 && neighborMineCount}
-    </button>
+    </Button>
   );
 }
 
