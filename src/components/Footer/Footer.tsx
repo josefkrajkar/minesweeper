@@ -6,7 +6,7 @@ function Footer() {
     <FooterComponent>
       <Author>Author: Josef Krajkář</Author>
       <Link
-        href="https://github.com/josefkrajkar"
+        href="https://github.com/josefkrajkar/minesweeper"
         target="_blank"
         rel="noopener noreferrer"
       >
