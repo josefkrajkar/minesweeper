@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Button = styled.button<{
+import Button from "./Button";
+
+export const StyledButton = styled(Button)<{
   isRevealed: boolean;
   isMine: boolean;
   isFlagged: boolean;
