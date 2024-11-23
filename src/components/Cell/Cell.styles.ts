@@ -8,11 +8,12 @@ export const StyledButton = styled(Button)<{
   isFlagged: boolean;
   neighborMineCount: number;
 }>`
-  font-size: 1.125rem;
+  padding: 0;
+  font-size: 1em;
   font-weight: bold;
   font-family: Arial, sans-serif;
   text-align: center;
-  line-height: 30px;
+  line-height: 1em;
   cursor: pointer;
   user-select: none;
   background-color: ${(props) =>

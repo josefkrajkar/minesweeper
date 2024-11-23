@@ -14,7 +14,7 @@ function Button(props: ButtonProps) {
 
   return (
     <button {...restProps}>
-      {isFlagged && "🚩"}
+      {isFlagged && !isRevealed && "🚩"}
       {isRevealed && isMine && "💣"}
       {isRevealed && !isMine && neighborMineCount > 0 && neighborMineCount}
     </button>
