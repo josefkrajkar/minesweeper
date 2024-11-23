@@ -67,6 +67,9 @@ export function MineFieldProvider({ children }: { children: React.ReactNode }) {
       const newMinefield = [...minefield];
       newMinefield[x][y].isFlagged = !newMinefield[x][y].isFlagged;
       setMinefield(newMinefield);
+      if (checkWinConditions(newMinefield)) {
+        setGameState("won");
+      }
     },
     [minefield],
   );
