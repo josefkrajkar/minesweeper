@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
 }

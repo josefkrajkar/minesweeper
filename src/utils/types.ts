@@ -8,3 +8,5 @@ export interface Cell {
 }
 
 export type Grid = Cell[][];
+
+export type GameState = 'running' | 'won' | 'lost';
